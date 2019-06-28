@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class CompareMatrices {
     public static void main(String[] args) throws IOException {
@@ -11,11 +12,12 @@ public class CompareMatrices {
                         )
                 );
 
-        int firstMatrixSize = Integer.parseInt(reader.readLine());
+        int[] firstMatrixDim = Arrays.stream(reader.readLine()
+                .split("\\s+")).mapToInt(Integer::parseInt).toArray();
 
-        int[][] firstMatrix = new int[firstMatrixSize][];
+        int[][] firstMatrix = new int[firstMatrixDim[0]][firstMatrixDim[1]];
 
-        for (int row = 0; row < firstMatrixSize; row++) {
+        for (int row = 0; row < firstMatrix.length; row++) {
             String[] inputData = reader.readLine().split("\\s+");
             firstMatrix[row] = new int[inputData.length];
 
@@ -25,10 +27,11 @@ public class CompareMatrices {
             }
         }
 
-        int secondMatrixSize = Integer.parseInt(reader.readLine());
-        int[][] secondMatrix = new int[secondMatrixSize][];
+        int[] secondMatrixSize = Arrays.stream(reader.readLine()
+                .split("\\s+")).mapToInt(Integer::parseInt).toArray();
+        int[][] secondMatrix = new int[secondMatrixSize[0]][secondMatrixSize[1]];
 
-        for (int row = 0; row < firstMatrixSize; row++) {
+        for (int row = 0; row < firstMatrix.length; row++) {
             String[] inputData = reader.readLine().split("\\s+");
             secondMatrix[row] = new int[inputData.length];
 
@@ -38,10 +41,12 @@ public class CompareMatrices {
             }
         }
 
-        if (firstMatrixSize != secondMatrixSize) {
+        if (firstMatrixDim[0] != secondMatrixSize[0]) {
             System.out.println("not equal");
             return;
         }
+
+        boolean areEqual = true;
 
         for (int row = 0; row < firstMatrix.length; row++) {
             boolean areArraysNotEqual = firstMatrix[row].length != secondMatrix[row].length;
@@ -50,9 +55,10 @@ public class CompareMatrices {
                 return;
             }
 
-            for (int col = 0; col < firstMatrix.length; col++) {
+            for (int col = 0; col < firstMatrix[row].length; col++) {
                 int firstValue = firstMatrix[row][col];
                 int secondValue = firstMatrix[row][col];
+
                 if (firstValue != secondValue) {
                     System.out.println("not equal");
                     return;
@@ -60,7 +66,8 @@ public class CompareMatrices {
             }
         }
 
-        System.out.println("equal");
-
+        if (areEqual) {
+            System.out.println("equal");
+        }
     }
 }
