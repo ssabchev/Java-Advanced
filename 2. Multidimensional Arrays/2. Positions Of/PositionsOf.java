@@ -25,15 +25,20 @@ public class PositionsOf {
         }
         
         int searchNumber = Integer.parseInt(reader.readLine());
+        boolean isFound = true;
 
         for (int row = 0; row < matrix.length; row++) {
             int[] ints = matrix[row];
             for (int col = 0; col < ints.length; col++) {
                 int value = ints[col];
                 if (value == searchNumber) {
+                    isFound = false;
                     System.out.println(row + " " + col);
                 }
             }
+        }
+        if (isFound){
+            System.out.println("not found");
         }
     }
 }
