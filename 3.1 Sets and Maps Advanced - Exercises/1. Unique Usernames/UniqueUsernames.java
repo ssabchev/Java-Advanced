@@ -22,9 +22,8 @@ public class UniqueUsernames {
         for (int i = 0; i < count; i++) {
             input = reader.readLine();
 
-            if (!usernames.contains(input)) {
-                usernames.add(input);
-            }
+            usernames.add(input);
+
         }
 
         for (String username : usernames) {
