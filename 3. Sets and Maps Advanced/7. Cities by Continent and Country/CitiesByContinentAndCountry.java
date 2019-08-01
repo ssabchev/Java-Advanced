@@ -7,14 +7,16 @@ import java.util.Map;
 
 public class CitiesByContinentAndCountry {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        System.in));
-
+        BufferedReader reader =
+                new BufferedReader(
+                        new InputStreamReader(
+                                System.in
+                        )
+                );
 
         int count = Integer.parseInt(reader.readLine());
 
-        Map<String,Map<String, ArrayList<String>>> citiesByContinentsAndCountries =
+        Map<String, Map<String, ArrayList<String>>> citiesByContinentsAndCountries =
                 new LinkedHashMap<>();
 
 
@@ -35,21 +37,16 @@ public class CitiesByContinentAndCountry {
         citiesByContinentsAndCountries.forEach((continent, country) -> {
             System.out.println(continent + ":");
             country.forEach((countryName, city) -> {
-                System.out.println(countryName);
+                String cityNames = city.toString().replaceAll("\\[|\\]", "");
                 System.out.println(String.format(
-                    "$s -> %s",
-                    countryName,
-                    city
+                        "%s -> %s",
+                        countryName,
+                        cityNames
                 ));
             });
         });
 
     }
 }
-//        shop.forEach((shopName,product) -> {
-//                System.out.println(shopName + "->");
-//                product.forEach((productName,productPrice) -> {
-//                System.out.println(String.format(
-//                "Product: %s, Price: %.1f",
-//                productName,
-//                productPrice
+
+
