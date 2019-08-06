@@ -19,7 +19,7 @@ public class AppliedArithmetic {
                 .boxed()
                 .collect(Collectors.toCollection(ArrayList::new));
 
-        String command = reader.readLine();
+        String command = "";
 
         Consumer<ArrayList<Integer>> printer =
                 arr -> arr.forEach(num -> System.out.print(num + " "));
@@ -36,8 +36,7 @@ public class AppliedArithmetic {
                 .map(e -> e -= 1)
                 .collect(Collectors.toCollection(ArrayList::new));
 
-        while (!"end".equals(command)) {
-
+        while (!"end".equals(command = reader.readLine())) {
             switch (command) {
                 case "add":
                     numbers = increment.apply(numbers);
@@ -45,14 +44,14 @@ public class AppliedArithmetic {
                 case "multiply":
                     numbers = byTwo.apply(numbers);
                     break;
-                case "substact":
+                case "subtract":
                     numbers = minusOne.apply(numbers);
                     break;
                 case "print":
                     printer.accept(numbers);
+                    System.out.println();
                     break;
             }
-            command = reader.readLine();
         }
     }
 }
